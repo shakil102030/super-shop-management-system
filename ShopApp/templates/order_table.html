@@ -1,0 +1,49 @@
+{%extends 'home.html'%}
+{%load static%}
+
+{% block container %}
+
+<div class="container">
+    <div class="form-group">
+      <div class="col-sm-offset-0 col-sm-2">
+        <img src="{{order_obj.qr_code.url}}" style="height: 180px; width: 280px;" alt="">
+      </div>
+    </div>
+    <!--<h2>Order Table</h2>-->
+    <table class="table table-bordered table-striped" cellpadding="0" cellspacing="0">
+      <tr class="head">
+          <th>SL. NO</th>
+          <th>Items</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>     
+      </tr>
+      {% for p in object_list  %}
+      <tr class="item">
+          <td>{{p.id}}</td>
+          <td>{{p.product_name}}</td>
+          <td>{{p.unit_price}}</td> 
+          <td>{{p.current_stock}}</td> 
+          <td>{{p.price}}</td>
+         
+         
+      </tr>
+      
+      {% endfor %}
+      <tr class="footer">
+        <td></td>
+        <td colspan="3">Total</td>
+        <td>{{ total }}</td>
+    </tr>
+    </table>
+    <div class="form-group">
+      <div class="col-sm-offset-0 col-sm-2">
+        <a href="{%url 'OrderPdfView' order_obj.pk %}"><button type="submit" class="btn btn-lg btn-block btn-success">PDF</button></a>
+      </div>
+    </div>
+    </div><br /><br />
+  
+    
+
+
+{% endblock container %}
